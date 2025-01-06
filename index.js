@@ -1,12 +1,14 @@
 const express = require('express');
-const app = express();
-const porta = process.env.PORT;
+const rotas = require('./rotas/rotas3');
+const porta = process.env.PORT || 3000;
 
-app.get('/', (req, res)=>{
-    res.send('Seja Bem-Vindo');
-    return res.end();
+const app = express();
+
+app.use('/', rotas);
+app.get('*',(req, res)=>{
+    res.send('Página Principal')
 });
 
-app.listen(porta || 3000,()=>{
-console.log('Rodando!');
-})
+app.listen(porta, ()=>{console.log('Server Running')});
+
+
